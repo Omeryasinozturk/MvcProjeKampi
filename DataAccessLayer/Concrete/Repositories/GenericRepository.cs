@@ -29,6 +29,12 @@ namespace DataAccessLayer.Concrete.Repositories
             c.SaveChanges();
         }
 
+        public T Get(Expression<Func<T, bool>> filter)
+        {
+            //Dizi veya listede sadece 1 değer dondurulmesi için kullanılan meted singleordefault
+            return _object.SingleOrDefault(filter);
+        }
+
         public void Insert(T p)
         {
             _object.Add(p);
@@ -47,9 +53,7 @@ namespace DataAccessLayer.Concrete.Repositories
 
         public void Update(T p)
         {
-            _object.Remove(p);
             c.SaveChanges();
-            throw new NotImplementedException();
 
         }
     }

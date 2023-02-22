@@ -19,7 +19,7 @@ namespace EntityLayer.Concrete
         public string UserMail { get; set; }
 
         [StringLength(50)]
-        public string Sunject { get; set; }
+        public string Subject { get; set; }
 
         public string Message { get; set; }
     }

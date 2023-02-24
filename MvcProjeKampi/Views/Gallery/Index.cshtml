@@ -1,4 +1,6 @@
-﻿
+﻿@using EntityLayer.Concrete
+@model List<ImageFile>
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -54,12 +56,14 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-2">
-                                    <a href="https://via.placeholder.com/1200/FFFFFF.png?text=1" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                                        <img src="https://via.placeholder.com/300/FFFFFF?text=1" class="img-fluid mb-2" alt="white sample" />
-                                    </a>
-                                </div>
-                             
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-sm-2">
+                                        <a href="@item.ImagePath" data-toggle="lightbox" data-title="@item.ImageName" data-gallery="gallery">
+                                            <img src="@item.ImagePath" class="img-fluid mb-2" alt="white sample" style="height: 200px; width: 600px;" />
+                                        </a>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -82,19 +86,19 @@
     <script src="~/AdminLTE-3.0.4/plugins/filterizr/jquery.filterizr.min.js"></script>
     <!-- Page specific script -->
     <script>
-$(function () {
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox({
-        alwaysShowClose: true
-      });
-    });
+        $(function () {
+            $(document).on('click', '[data-toggle="lightbox"]', function (event) {
+                event.preventDefault();
+                $(this).ekkoLightbox({
+                    alwaysShowClose: true
+                });
+            });
 
-    $('.filter-container').filterizr({gutterPixels: 3});
-    $('.btn[data-filter]').on('click', function() {
-      $('.btn[data-filter]').removeClass('active');
-      $(this).addClass('active');
-    });
-  })</script>
+            $('.filter-container').filterizr({ gutterPixels: 3 });
+            $('.btn[data-filter]').on('click', function () {
+                $('.btn[data-filter]').removeClass('active');
+                $(this).addClass('active');
+            });
+        })</script>
 </body>
 </html>
